@@ -12,7 +12,7 @@ trap cleanup EXIT
 trace $CLI vector-search-endpoints create-endpoint "${endpoint_name}" STANDARD | jq '{name, endpoint_type}'
 
 title "Initial deploy with one Delta Sync and one Direct Access index"
-sed "s/PRIMARY_KEY_PLACEHOLDER/DELTA_SYNC/" databricks.yml.tmpl | envsubst > databricks.yml
+sed "s/INDEX_TYPE_PLACEHOLDER/DELTA_SYNC/" databricks.yml.tmpl | envsubst > databricks.yml
 trace $CLI bundle deploy
 
 title "Force a recreate of both indexes (primary_key changes are immutable)"
